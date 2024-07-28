@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Tawk</string>
+    <string name="error_while_loading_next_item">Error while loading next item</string>
+</resources>
