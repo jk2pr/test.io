@@ -16,7 +16,12 @@ import com.hoppers.tawk.R
 
 @Composable
 @Preview
-fun OfflineError(modifier: Modifier = Modifier, retryHandler: () -> Unit = {}) {
+fun OfflineError(
+    modifier: Modifier = Modifier,
+    retryHandler: () -> Unit = {},
+    title: String = "You're offline",
+    message: String = "Check your connection"
+) {
 
     Column(
         modifier = modifier,
@@ -24,8 +29,8 @@ fun OfflineError(modifier: Modifier = Modifier, retryHandler: () -> Unit = {}) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Icon(painterResource(id = R.drawable.wifi_off_48dp), contentDescription = "Error")
-        Text(text = "You're offline", style = MaterialTheme.typography.headlineSmall)
-        Text(text = "Check your connection", style = MaterialTheme.typography.bodyLarge)
+        Text(text = title, style = MaterialTheme.typography.headlineSmall)
+        Text(text = message, style = MaterialTheme.typography.bodyLarge)
 
         OutlinedButton(onClick = retryHandler) {
             Text(text = "Try again")

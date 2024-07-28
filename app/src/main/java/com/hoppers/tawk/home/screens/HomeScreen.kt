@@ -142,9 +142,17 @@ class HomeScreen : Screen, Parcelable {
             0 -> when (userList.loadState.refresh) {
                 is LoadState.Loading ->
                     if (status is ConnectionStatus.Connected)
-                        isLoading.value = true
+                        isLoading.value = true else LoadingItem()
 
-                is LoadState.Error -> OfflineError(retryHandler = retryHandler)
+                is LoadState.Error -> {
+                    OfflineError(
+                        retryHandler = retryHandler,
+                        title = "Oops!",
+                        message = "Please try again"
+                    )
+                    isLoading.value = false
+                }
+
                 is LoadState.NotLoading -> {}
             }
 
@@ -202,6 +210,7 @@ class HomeScreen : Screen, Parcelable {
             0f, 0f, 0f, 1f, 0f
         )
     }
+
     @IgnoredOnParcel
     private val colorFilter = ColorFilter.colorMatrix(colorMatrix = ColorMatrix(colorMatrix))
 

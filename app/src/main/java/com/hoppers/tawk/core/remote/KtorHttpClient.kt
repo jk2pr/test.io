@@ -55,7 +55,7 @@ val ktorHttpClient = HttpClient(Android) {
 
     install(ResponseObserver) {
         onResponse { _ ->
-
+           // Log.d("HTTP Url:", "${response.call.request.url}")
         }
     }
 

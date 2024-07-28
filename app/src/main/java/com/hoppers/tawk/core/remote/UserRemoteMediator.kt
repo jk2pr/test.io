@@ -9,6 +9,7 @@ import com.hoppers.tawk.core.local.IRoomDataBase
 import com.hoppers.tawk.core.local.UserEntity
 import com.hoppers.tawk.home.mappers.toUserEntity
 import com.hoppers.tawk.home.repositories.IHomeRepository
+import kotlinx.coroutines.delay
 
 
 /**
@@ -55,11 +56,10 @@ class UserRemoteMediator(
             }
 
             // Fetch users from the repository
-
             val users = repository.getUser(page = loadKey)
             //Simulating a delay
 
-            //  delay(10000)
+            delay(5000)
 
             // Perform database transactions
 
