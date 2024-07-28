@@ -2,17 +2,6 @@
 
 This project is an Android application that fetches a list of GitHub users, displays them in a paginated list, and allows users to view detailed profiles. The app is designed with a focus on best practices in Android development, including the use of Kotlin, Room for data persistence, and Jetpack Compose for UI.
 
-
-
-
-1. Code is written in Kotlin using Android Studio.
-2. Data is persisted using Room.
-3. UI is implemented using Jetpack Compose.
-4. All media is cached on disk.
-5. Unit tests are written for data processing logic, models, and Room models.
-6. Screen rotation is supported.
-7. MVVM pattern is used with Kotlin Coroutines.
-
 ## GitHub Users
 
 1. The app works offline if data has been previously loaded.
@@ -22,7 +11,7 @@ This project is an Android application that fetches a list of GitHub users, disp
 
 ## Users List
 
-1. The GitHub users list is obtained from `https://api.github.com/users?since=0`.
+1. The GitHub users list is obtained from github api.
 2. Supports pagination using the Android Paging Library.
 3. Dynamically determines page size based on the first batch of items.
 4. Displays a spinner while loading data.
@@ -32,9 +21,8 @@ This project is an Android application that fetches a list of GitHub users, disp
 
 ## Profile
 
-1. Profile info is obtained using the GitHub username from `https://api.github.com/users/username`.
-2. The view includes the user's avatar as a header, followed by information fields.
-3. Allows retrieval and saving of note data to the local database.
+1. Profile info is obtained using the GitHub username .
+2Allows retrieval and saving of note data to the local database.
 
 
 

@@ -50,6 +50,7 @@ import com.hoppers.tawk.home.viewmodels.HomeViewModel
 import com.hoppers.tawk.profile.screens.ProfileScreen
 import com.tusharhow.connext.helper.connectivityStatus
 import com.tusharhow.connext.models.ConnectionStatus
+import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import java.util.UUID
 
@@ -149,12 +150,17 @@ class HomeScreen : Screen, Parcelable {
 
             in 1..Int.MAX_VALUE -> isLoading.value = false
         }
-        LazyColumn(modifier = Modifier
-            .fillMaxSize()
-            .padding(vertical = 16.dp)) {
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+        ) {
             items(
                 count = if (isLoading.value) 15 else userList.itemCount,
-                key = { UUID.randomUUID() }
+                key = { index ->
+                    if (userList.itemCount > 0)
+                        userList[index]?.id ?: 0 else UUID.randomUUID()
+                }
             ) { index ->
                 ShimmerListItem(isLoading = isLoading.value, contentAfterLoading = {
                     if (index > 0) HorizontalDivider()
@@ -187,6 +193,7 @@ class HomeScreen : Screen, Parcelable {
     /**
      * Derived state to create a color matrix for image color filter.
      */
+    @IgnoredOnParcel
     private val colorMatrix by derivedStateOf {
         floatArrayOf(
             -1f, 0f, 0f, 0f, 255f,
@@ -195,6 +202,7 @@ class HomeScreen : Screen, Parcelable {
             0f, 0f, 0f, 1f, 0f
         )
     }
+    @IgnoredOnParcel
     private val colorFilter = ColorFilter.colorMatrix(colorMatrix = ColorMatrix(colorMatrix))
 
     /**

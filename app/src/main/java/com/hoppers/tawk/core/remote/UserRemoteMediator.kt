@@ -9,7 +9,6 @@ import com.hoppers.tawk.core.local.IRoomDataBase
 import com.hoppers.tawk.core.local.UserEntity
 import com.hoppers.tawk.home.mappers.toUserEntity
 import com.hoppers.tawk.home.repositories.IHomeRepository
-import kotlinx.coroutines.delay
 
 
 /**
@@ -43,7 +42,6 @@ class UserRemoteMediator(
 
             val loadKey = when (loadType) {
                 LoadType.REFRESH -> {
-                    println("LoadType.REFRESH triggered")
                     0
                 }
 
@@ -52,7 +50,6 @@ class UserRemoteMediator(
 
                     val lastItem = state.lastItemOrNull()
                     val k = lastItem?.id ?: 0
-                    println("LoadType.APPEND triggered  $k")
                     k
                 }
             }
@@ -62,7 +59,7 @@ class UserRemoteMediator(
             val users = repository.getUser(page = loadKey)
             //Simulating a delay
 
-            delay(10000)
+            //  delay(10000)
 
             // Perform database transactions
 
@@ -75,7 +72,6 @@ class UserRemoteMediator(
 
             MediatorResult.Success(endOfPaginationReached = users.isEmpty())
         } catch (e: Exception) {
-            println(e)
             MediatorResult.Error(e)
         }
     }
